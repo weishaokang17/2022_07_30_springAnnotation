@@ -1,5 +1,6 @@
 package per.wsk.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import per.wsk.dao.BookDao;
 
@@ -8,10 +9,10 @@ import javax.inject.Inject;
 @Service
 public class BookService {
 
-    //@Qualifier("bookDao")
+    @Qualifier("bookDao")
     //@Autowired(required=false)
     //@Resource(name="bookDao2")
-    @Inject
+//    @Inject
     private BookDao bookDao;
 
     public void print(){

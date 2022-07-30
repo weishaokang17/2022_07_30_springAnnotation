@@ -1,15 +1,20 @@
 package per.wsk.config;
 
 import org.springframework.context.annotation.*;
+import per.wsk.bean.Color;
+import per.wsk.bean.ColorFactoryBean;
 import per.wsk.bean.Person;
+import per.wsk.bean.Red;
 import per.wsk.condition.LinuxCondition;
+import per.wsk.condition.MyImportBeanDefinitionRegistrar;
+import per.wsk.condition.MyImportSelector;
+import per.wsk.condition.WindowsCondition;
 
-import java.awt.*;
 
 //类中组件统一设置。满足当前条件，这个类中配置的所有bean注册才能生效；
 //@Conditional({WindowsCondition.class})
 @Configuration
-//@Import({Color.class,Red.class,MyImportSelector.class,MyImportBeanDefinitionRegistrar.class})
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 //@Import导入组件，id默认是组件的全类名
 public class MainConfig2 {
 
@@ -47,7 +52,7 @@ public class MainConfig2 {
      * 如果系统是windows，给容器中注册("bill")
      * 如果是linux系统，给容器中注册("linus")
      */
-
+    @Conditional(WindowsCondition.class)
     @Bean("bill")
     public Person person01(){
         return new Person("Bill Gates",62);
@@ -72,10 +77,10 @@ public class MainConfig2 {
      * 		2）、要获取工厂Bean本身，我们需要给id前面加一个&
      * 			&colorFactoryBean
      */
-    /*@Bean
+    @Bean
     public ColorFactoryBean colorFactoryBean(){
         return new ColorFactoryBean();
-    }*/
+    }
 
 
 
