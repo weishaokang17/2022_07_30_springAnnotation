@@ -18,8 +18,9 @@ import per.wsk.dao.BookDao;
  * 							applicationContext.getBean("bookDao")
  * 		3）、@Qualifier("bookDao")：使用@Qualifier指定需要装配的组件的id，而不是使用属性名
  * 		4）、自动装配默认一定要将属性赋值好，没有就会报错；
- * 			可以使用@Autowired(required=false);
+ * 			可以使用@Autowired(required=false); 后面加上required=false，即项目中bean容器里面没有该实例，项目启动运行也不会报错
  * 		5）、@Primary：让Spring进行自动装配的时候，默认使用首选的bean；
+ * 	            也就是说，如果该类在bean容器中有多个实例，某个实例上面标了@Primary注解，那么这个实例就会被优先注入
  * 				也可以继续使用@Qualifier指定需要装配的bean的名字
  * 		BookService{
  * 			@Autowired
